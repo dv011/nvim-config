@@ -32,7 +32,16 @@ vim.opt.scrolloff = 8
 vim.opt.updatetime = 50
 
 --sets color column so I will know when to start a new line
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80"
 
 --maps leader key to space key
 vim.g.mapleader = " "
+
+-- window management options
+vim.opt.splitbelow = true
+
+-- save options
+vim.opt.swapfile = false
+vim.opt.backup = false
+vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undofile = true

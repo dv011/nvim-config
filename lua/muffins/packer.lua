@@ -37,7 +37,7 @@ return require('packer').startup(function(use)
 	  branch = 'v2.x',
 	  requires = {
 		  -- LSP Support
-		  {'neovim/nvim-lspconfig'},             -- Required
+		  {'neovim/nvim-lspconfig'},             -- bequired
 		  {                                      -- Optional
 		  'williamboman/mason.nvim',
 		  run = function()
@@ -49,11 +49,23 @@ return require('packer').startup(function(use)
 	  -- Autocompletion
 	  {'hrsh7th/nvim-cmp'},     -- Required
 	  {'hrsh7th/cmp-nvim-lsp'}, -- Required
+	  {'hrsh7th/cmp-buffer'},   -- Not Required, Added this myself
+	  {'hrsh7th/cmp-path'},     -- Not Required, Added this myself
 	  {'L3MON4D3/LuaSnip'},     -- Required
   }
 }
 
+-- debuggers, daps
+use 'mfussenegger/nvim-dap'
+use 'leoluz/nvim-dap-go'
+use 'rcarriga/nvim-dap-ui'
+use 'theHamsta/nvim-dap-virtual-text'
+use 'jay-babu/mason-nvim-dap.nvim'
+use 'mfussenegger/nvim-jdtls'
 
 use ('jbyuki/instant.nvim')
+
+-- formatter
+use 'jose-elias-alvarez/null-ls.nvim'
 
 end)
