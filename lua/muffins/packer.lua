@@ -1,5 +1,3 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
@@ -47,14 +45,49 @@ return require('packer').startup(function(use)
 	  {'williamboman/mason-lspconfig.nvim'}, -- Optional
 
 	  -- Autocompletion
-	  {'hrsh7th/nvim-cmp'},     -- Required
+	  -- {'hrsh7th/nvim-cmp'},     -- Required
 	  {'hrsh7th/cmp-nvim-lsp'}, -- Required
-	  {'hrsh7th/cmp-buffer'},   -- Not Required, Added this myself
-	  {'hrsh7th/cmp-path'},     -- Not Required, Added this myself
-	  {'L3MON4D3/LuaSnip'},     -- Required
+	  -- {'hrsh7th/cmp-buffer'},   -- Not Required, Added this myself
+	  -- {'hrsh7th/cmp-path'},     -- Not Required, Added this myself
+	  -- {'L3MON4D3/LuaSnip'},     -- Required
   }
 }
 
+-- cmp-plugins
+use {
+    'hrsh7th/nvim-cmp',
+    config = function ()
+        require'cmp'.setup {
+            snippet = {
+                expand = function(args)
+                    require'luasnip'.lsp_expand(args.body)
+                end
+            },
+
+            sources = {
+                { name = 'luasnip' },
+                -- more sources
+            },
+        }
+    end
+}
+use 'hrsh7th/cmp-buffer'
+use 'hrsh7th/cmp-path'
+use 'hrsh7th/cmp-cmdline'
+use 'saadparwaiz1/cmp_luasnip'
+
+
+-- snippets
+use({
+	"L3MON4D3/LuaSnip",
+	-- follow latest release.
+	tag = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+	-- install jsregexp (optional!:).
+	run = "make install_jsregexp"
+})
+use 'rafamadriz/friendly-snippets'
+
+-- Installation
 -- debuggers, daps
 use 'mfussenegger/nvim-dap'
 use 'leoluz/nvim-dap-go'
@@ -67,5 +100,14 @@ use ('jbyuki/instant.nvim')
 
 -- formatter
 use 'jose-elias-alvarez/null-ls.nvim'
+
+-- terminal
+use {"akinsho/toggleterm.nvim", tag = '*', config = function()
+  require("toggleterm").setup()
+end}
+
+use 'ThePrimeagen/vim-be-good'
+
+use 'thanthese/Tortoise-Typing'
 
 end)
